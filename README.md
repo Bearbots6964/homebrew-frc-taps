@@ -1,15 +1,15 @@
-# Bearbots6964 Elastic-dashboard
+# Bearbots6964 FRC Homebrew Repository
 
 ## How do I install these formulae?
 
-`brew install bearbots6964/elastic-dashboard/<formula>`
+`brew install bearbots6964/frc-taps/<formula>`
 
-Or `brew tap bearbots6964/elastic-dashboard` and then `brew install <formula>`.
+Or `brew tap bearbots6964/frc-taps` and then `brew install <formula>`.
 
 Or, in a `brew bundle` `Brewfile`:
 
 ```ruby
-tap "bearbots6964/elastic-dashboard"
+tap "bearbots6964/frc-taps"
 brew "<formula>"
 ```
 
