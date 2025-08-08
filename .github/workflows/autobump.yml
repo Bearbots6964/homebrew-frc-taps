@@ -1,17 +1,7 @@
-name: Bump casks on schedule or request
-
 on:
-  workflow_dispatch:
-    inputs:
-      casks:
-        description: Custom list of casks to livecheck and bump if outdated
-        required: false
   schedule:
-    # once daily
     - cron: "0 0 * * *"
-
-permissions:
-  contents: rea
+  workflow_dispatch:
 
 jobs:
   autobump:
@@ -20,18 +10,21 @@ jobs:
       - name: Set up Homebrew
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@main
+      - name: Cache Homebrew Bundler RubyGems
+        id: cache
+        uses: actions/cache@v3
         with:
-          core: false
-          cask: true
-          test-bot: false
+          path: ${{ steps.set-up-homebrew.outputs.gems-path }}
+          key: ${{ runner.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
+          restore-keys: ${{ runner.os }}-rubygems-
+      
+      - name: Install Homebrew Bundler RubyGems
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: brew install-bundler-gems
 
-      - name: Configure Git user
-        uses: Homebrew/actions/git-user-config@main
-        with:
-          username: ${{ (github.event_name == 'workflow_dispatch' && github.actor) || 'BrewTestBot' }}
-
-      - name: Bump casks
-        id: autobump
-        continue-on-error: true
+      - name: Run `brew bump`
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          HOMEBREW_GITHUB_API_TOKEN: ${{ github.token }}
         run: |
-
+          brew bump --open-pr --no-fork --tap=bearbots6964/elastic-dashboard
