@@ -8,7 +8,7 @@ cask "elastic-dashboard" do
   desc "Simple and modern dashboard for FRC"
   homepage "https://frc-elastic.gitbook.io/docs"
 
-  depends_on macos: ">= :mojave"
+  depends_on macos: ">= :catalina"
 
   app "elastic_dashboard.app"
 

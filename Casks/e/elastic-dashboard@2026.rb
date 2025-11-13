@@ -13,7 +13,7 @@ cask "elastic-dashboard@2026" do
     regex(/^v?(2026[a-zA-Z0-9\-\.]*)$/i)
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on macos: ">= :catalina"
 
   app "elastic_dashboard.app"
 
