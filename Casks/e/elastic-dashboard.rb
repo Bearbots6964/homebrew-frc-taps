@@ -1,6 +1,6 @@
 cask "elastic-dashboard" do
-  version "2026.1.0"
-  sha256 "ec5e6f511a1b0cc15d50e44199406529528bc7a3a59c18e52828b27b44cd6de7"
+  version "2026.1.2"
+  sha256 "1bb8bd1c5469ee057f2fecd212ca958a07e96f9956873b911e083d4aecfd15f9"
 
   url "https://github.com/Gold872/elastic-dashboard/releases/download/v#{version}/elastic-setup-macos.dmg",
       verified: "github.com/Gold872/elastic-dashboard/"
